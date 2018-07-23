@@ -1,10 +1,9 @@
 import csv
 import json
 
-input_file = open('input.csv', 'r')
-output_file = open('output.json', 'w')
+with open('input.csv') as f:
+    reader = csv.DictReader(f)
+    rows = list(reader)
 
-fieldnames = ("category","product","userId","eventTime","eventType")
-reader = csv.DictReader( input_file, fieldnames)
-out = json.dumps( [ row for row in reader ] )
-output_file.write(out)
+with open('output.json', 'w') as f:
+    json.dump(rows, f)
